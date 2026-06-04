@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #faf8f5;
+  --ink: #2c2825;
+  --sage: #8b9a7d;
+  --stone: #a39e97;
+  --header: #131921;
+  --primary: #ff9900;
+  /* Background and UI vars for dynamic theming */
+  --background-overlay: rgba(0,0,0,0.2);
+  --card-background: rgba(0,0,0,0.8);
+  --card-text-color: #ffffff;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+body {
+  @apply bg-gray-50 text-ink antialiased overflow-x-hidden;
+  background-color: var(--cream);
+}
+
+/* Premium Custom Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Glassmorphism utility */
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(44, 40, 37, 0.08);
+  }
+
+  .glassmorphism-dark {
+    background: rgba(19, 25, 33, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Shimmer skeleton screen animation */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(44, 40, 37, 0.04) 25%,
+      rgba(44, 40, 37, 0.08) 37%,
+      rgba(44, 40, 37, 0.04) 63%
+    );
+    background-size: 400% 100%;
+    animation: shimmer-anim 1.4s ease infinite;
+  }
+
+  /* Custom gradients using theme variables */
+  .bg-gradient-premium {
+    background: linear-gradient(135deg, #faf8f5 0%, #f4ebd9 100%);
+  }
+
+  .bg-gradient-header {
+    background: linear-gradient(135deg, #131921 0%, #232f3e 100%);
+  }
+}
+
+/* Keyframe Animations */
+@keyframes shimmer-anim {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float-blob {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+.animate-blob-1 {
+  animation: float-blob 8s infinite ease-in-out;
+}
+
+.animate-blob-2 {
+  animation: float-blob 12s infinite ease-in-out 2s;
+}
+
+/* Hide scrollbars for bottom nav */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Dynamic theming hooks for glass cards */
+.glass-theme-card {
+  background: var(--card-background);
+  color: var(--card-text-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+

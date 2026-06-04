@@ -1,0 +1,52 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql" // Change from "mongodb"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") // Recommended for migrations
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Product {
+  id           String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  price       Float
+  imageUrl    String?
+  category    String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  description  String?
+  priceDetails String?
+  imageUrl     String?
+  category     String?
+  isPublished  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Settings {
+  id           String   @id @default(cuid())
+  key   String   @unique
+  value String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
