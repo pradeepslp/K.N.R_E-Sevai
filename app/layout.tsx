@@ -10,6 +10,8 @@ import MobileBottomNav from "@/components/MobileBottomNav";
 import CartDrawer from "@/components/CartDrawer";
 import QuickViewModal from "@/components/QuickViewModal";
 import { prisma } from "@/lib/prisma";
+import { Analytics } from "@vercel/analytics/next";
+
 
 import type { Viewport } from "next";
 
@@ -87,6 +89,7 @@ export default async function RootLayout({
           <MobileBottomNav />
           <CartDrawer />
           <QuickViewModal />
+          <Analytics />
         </Providers>
 
       </body>
